@@ -1,0 +1,12 @@
+{
+  "appName": "app-000001",
+  "defaultPort": "3333",
+  "firebase":{
+    "apiKey": "AIzaSyASBKmCUEjbS7Krp1O55xRldAFowf95UT0",
+    "authDomain": "acando-academy-codehub.firebaseapp.com",
+    "databaseURL": "https://acando-academy-codehub.firebaseio.com",
+    "projectId": "acando-academy-codehub",
+    "storageBucket": "acando-academy-codehub.appspot.com",
+    "messagingSenderId": "484704683824"
+  }
+}
