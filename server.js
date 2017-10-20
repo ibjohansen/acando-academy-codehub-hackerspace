@@ -4,7 +4,6 @@ const firebase = require("firebase");
 const config = require('./appConfig.json');
 
 const fbConfig = config.firebase;
-const APP_NAME = config.appName;
 
 firebase.initializeApp(fbConfig);
 firebase.auth().signInAnonymously().catch((error) => {
@@ -23,7 +22,8 @@ app.get('/', (req, res) => {
 
 //get all items on the people node
 app.get('/people', (req, res) => {
-  const ref = firebase.database().ref(APP_NAME);
+  const appId = req.params.app;
+  const ref = firebase.database().ref(appId);
   ref.once('value')
     .then((snapshot) => {
       const data = [];
@@ -39,7 +39,8 @@ app.get('/people', (req, res) => {
 
 // add item to the people node
 app.post('/people/add', (req, res) => {
-  const ref = firebase.database().ref(`${APP_NAME}/people`);
+  const appId = req.params.app;
+  const ref = firebase.database().ref(`${appId}/people`);
   ref.push(req.body, (() => res.sendStatus(200)));
 });
 
@@ -47,22 +48,25 @@ app.post('/people/add', (req, res) => {
 // this method is using set which will overwrite ALL data on the node,
 // see use of «transaction» for a sturdier function
 app.put('/people/:id', (req, res) => {
+  const appId = req.params.app;
   const id = req.params.id;
-  const ref = firebase.database().ref(`${APP_NAME}/people/${id}`);
+  const ref = firebase.database().ref(`${appId}/people/${id}`);
   ref.set(req.body, (() => res.sendStatus(200)));
 });
 
 // add or update image on a person
 app.put('/people/:id/image', (req, res) => {
+  const appId = req.params.app;
   const id = req.params.id;
-  const ref = firebase.database().ref(`${APP_NAME}/people/${id}/image`);
+  const ref = firebase.database().ref(`${appId}/people/${id}/image`);
   ref.set(req.body.imageDataUrl, (() => res.sendStatus(200)));
 });
 
 //remove item by id on people node
 app.delete('/people/:id', (req, res) => {
+  const appId = req.params.app;
   const id = req.params.id;
-  const ref = firebase.database().ref(`${APP_NAME}/people/${id}`);
+  const ref = firebase.database().ref(`${appId}/people/${id}`);
   ref.remove()
     .then(() => res.sendStatus(200))
     .catch(function (error) {
