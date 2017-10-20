@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 //get all items on the people node
-app.get('/people', (req, res) => {
+app.get('/:app/people', (req, res) => {
   const appId = req.params.app;
   const ref = firebase.database().ref(appId);
   ref.once('value')
@@ -38,7 +38,7 @@ app.get('/people', (req, res) => {
 });
 
 // add item to the people node
-app.post('/people/add', (req, res) => {
+app.post('/:app/people/add', (req, res) => {
   const appId = req.params.app;
   const ref = firebase.database().ref(`${appId}/people`);
   ref.push(req.body, (() => res.sendStatus(200)));
@@ -47,7 +47,7 @@ app.post('/people/add', (req, res) => {
 // update item by id on the people node NOTE -
 // this method is using set which will overwrite ALL data on the node,
 // see use of «transaction» for a sturdier function
-app.put('/people/:id', (req, res) => {
+app.put('/:app/people/:id', (req, res) => {
   const appId = req.params.app;
   const id = req.params.id;
   const ref = firebase.database().ref(`${appId}/people/${id}`);
@@ -55,7 +55,7 @@ app.put('/people/:id', (req, res) => {
 });
 
 // add or update image on a person
-app.put('/people/:id/image', (req, res) => {
+app.put('/:app/people/:id/image', (req, res) => {
   const appId = req.params.app;
   const id = req.params.id;
   const ref = firebase.database().ref(`${appId}/people/${id}/image`);
@@ -63,7 +63,7 @@ app.put('/people/:id/image', (req, res) => {
 });
 
 //remove item by id on people node
-app.delete('/people/:id', (req, res) => {
+app.delete('/:app/people/:id', (req, res) => {
   const appId = req.params.app;
   const id = req.params.id;
   const ref = firebase.database().ref(`${appId}/people/${id}`);
