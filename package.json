@@ -4,12 +4,7 @@
   "description": "demo of node/express web-api for NTNU-hackerspace",
   "main": "app.js",
   "scripts": {
-    "build:dev": "rm -rf ./build && webpack --config webpack.config.dev.js",
-    "build:dist": "rm -rf ./dist && webpack --config webpack.config.dist.js",
-    "start:dev": "npm run build:dev",
-    "start": "NODE_ENV=production npm run build:dist && node ./dist/server.js",
-    "lint": "",
-    "test": ""
+    "start": "NODE_ENV=production node server.js"
   },
   "author": "ib.johansen@acando.no",
   "license": "MIT",
@@ -19,14 +14,6 @@
     "firebase": "^4.5.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
-    "webpack-node-externals": "^1.6.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
-    "start-server-webpack-plugin": "^2.2.0",
-    "webpack": "^3.7.1",
     "webpack-node-externals": "^1.6.0"
   }
 }

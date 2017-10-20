@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const firebase = require("firebase");
-const config = require('../appConfig.json');
+const config = require('./appConfig.json');
 
 const fbConfig = config.firebase;
 const APP_NAME = config.appName;
