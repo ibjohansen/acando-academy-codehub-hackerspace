@@ -17,6 +17,11 @@ app.use(bodyParser.json());
 app.set('port', process.env.PORT || config.defaultPort);
 
 //get all items on the people node
+app.get('/', (req, res) => {
+  res.send('nothing to see here...');
+});
+
+//get all items on the people node
 app.get('/people', (req, res) => {
   const ref = firebase.database().ref(APP_NAME);
   ref.once('value')
@@ -38,7 +43,9 @@ app.post('/people/add', (req, res) => {
   ref.push(req.body, (() => res.sendStatus(200)));
 });
 
-// update item by id on the people node NOTE - this method is using set which will overwrite ALL data on the node, see transaction for a sturdier function
+// update item by id on the people node NOTE -
+// this method is using set which will overwrite ALL data on the node,
+// see use of «transaction» for a sturdier function
 app.put('/people/:id', (req, res) => {
   const id = req.params.id;
   const ref = firebase.database().ref(`${APP_NAME}/people/${id}`);

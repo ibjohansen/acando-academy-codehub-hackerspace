@@ -9,11 +9,11 @@
   "author": "ib.johansen@acando.no",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "firebase": "^4.5.1",
-    "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
-    "webpack-node-externals": "^1.6.0"
+    "body-parser": "1.18.2",
+    "express": "4.16.2",
+    "firebase": "4.5.1",
+    "request": "2.83.0",
+    "request-promise-native": "1.0.5",
+    "webpack-node-externals": "1.6.0"
   }
 }
