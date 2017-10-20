@@ -1,7 +1,7 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import * as firebase from 'firebase';
-import config from '../appConfig.json';
+const express = require('express');
+const bodyParser = require('body-parser');
+const firebase = require("firebase");
+const config = require('../appConfig.json');
 
 const fbConfig = config.firebase;
 const APP_NAME = config.appName;
@@ -14,9 +14,7 @@ firebase.auth().signInAnonymously().catch((error) => {
 const app = express();
 app.use(bodyParser.json());
 
-const isProduction = process.env === 'production';
-
-isProduction && app.set('port', process.env.PORT || config.defaultPort);
+app.set('port', process.env.PORT || config.defaultPort);
 
 //get all items on the people node
 app.get('/people', (req, res) => {
@@ -65,9 +63,7 @@ app.delete('/people/:id', (req, res) => {
     });
 });
 
-if (isProduction) {
-  app.listen(app.get('port'), () => {
-    console.log('server listening on ', app.get('port'));
-  });
-}
-export default app;
+app.listen(app.get('port'), () => {
+  console.log('server listening on ', app.get('port'));
+});
+module.exports = app;
