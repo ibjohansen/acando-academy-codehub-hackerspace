@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f3b3251839e858d11e73"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "40e7143dce4bd37eea6d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -918,6 +918,15 @@ app.put('/people/:id', function (req, res) {
   var id = req.params.id;
   var ref = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref(APP_NAME + '/people/' + id);
   ref.set(req.body, function () {
+    return res.sendStatus(200);
+  });
+});
+
+// add or update image on a person
+app.put('/people/:id/image', function (req, res) {
+  var id = req.params.id;
+  var ref = __WEBPACK_IMPORTED_MODULE_2_firebase__["database"]().ref(APP_NAME + '/people/' + id + '/image');
+  ref.set(req.body.imageDataUrl, function () {
     return res.sendStatus(200);
   });
 });

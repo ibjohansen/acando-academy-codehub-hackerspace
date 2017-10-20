@@ -47,6 +47,13 @@ app.put('/people/:id', (req, res) => {
   ref.set(req.body, (() => res.sendStatus(200)));
 });
 
+// add or update image on a person
+app.put('/people/:id/image', (req, res) => {
+  const id = req.params.id;
+  const ref = firebase.database().ref(`${APP_NAME}/people/${id}/image`);
+  ref.set(req.body.imageDataUrl, (() => res.sendStatus(200)));
+});
+
 //remove item by id on people node
 app.delete('/people/:id', (req, res) => {
   const id = req.params.id;
